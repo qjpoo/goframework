@@ -19,7 +19,7 @@ func main() {
 	sessionID := "mySession"
 
 	// 创建session并进行使用
-	sess := sessions.New(sessions.Config{
+	sess := sessions.New(sessions.Config{  // 返回一个sessions对象
 		Cookie: sessionID,
 	})
 
@@ -83,7 +83,7 @@ func main() {
 
 
 	// session和DB绑定
-	db, err := boltdb.New("./s141/session.db", 0600)
+	db, err := boltdb.New("./s07/session.db", 0600)
 	if err != nil {
 		panic(err.Error())
 	}

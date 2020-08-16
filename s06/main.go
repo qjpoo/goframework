@@ -15,10 +15,11 @@ func main() {
 
 	// mvc.Configure来配置路由组和控制器对象
 	// localhost:8000/user/xxoo
-	mvc.Configure(app.Party("/user", func(context *mvc.Application) {
+	mvc.Configure(app.Party("/user"), func(context *mvc.Application) {
 		context.Handle(new(UserController))
+		app.Logger().Info("/user/xxoo")
+	})
 
-	}))
 
 	app.Run(iris.Addr(":8000"))
 
@@ -85,8 +86,13 @@ func (uc *UserController) PostLogin() mvc.Result {
 type UserController struct {
 }
 
+
+
+
+
+
 func (uc *UserController) BeforeActivation(a mvc.BeforeActivation) {
-	a.Handle("GET", "/query", "UserInfo")
+	a.Handle("GET", "/query", "UserInfo") // UserInfo 是函数
 }
 
 // 自定义匹配别的请求
